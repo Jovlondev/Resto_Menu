@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+
+
+{% block title %} |Add Food {% endblock %}
+
+
+
+{% block content %}
+<div class="container">
+        <form action="#" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="food-category">Kategoriya</label>
+                <select id="food-category" name="food-category" required>
+                    <option value="" disabled selected>Kategoriyani tanlang</option>
+                    <option value="salatlar">Salatlar</option>
+                    <option value="issiq-ovqatlar">Issiq Ovqatlar</option>
+                    <option value="ichimliklar">Ichimliklar</option>
+                    <option value="lavash">Lavash</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="food-name">Ovqat Nomi</label>
+                <input type="text" id="food-name" name="food-name" placeholder="Masalan: Tiramisu" required>
+            </div>
+            <div class="form-group">
+                <label for="food-description">Ta'rif</label>
+                <textarea id="food-description" name="food-description" placeholder="Ovqat haqida qisqacha ma'lumot" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="food-price">Narxi (so'mda)</label>
+                <input type="number" id="food-price" name="food-price" placeholder="Masalan: 35000" required>
+            </div>
+            <div class="form-group">
+                <label for="food-image">Rasm Yuklash</label>
+                <input type="file" id="food-image" name="food-image" accept="image/*">
+            </div>
+            <button type="submit">Ovqat Qo'shish</button>
+        </form>
+    </div>
+{% endblock %}

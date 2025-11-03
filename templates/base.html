@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    {% load static%}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chiroyli Restoran {% block title %} {% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'style.css'%}">
+    <link rel="stylesheet" href="{% static 'ctg.css'%}">
+    <link rel="stylesheet" href="{% static 'food.css'%}">
+    <link rel="stylesheet" href="
+">
+
+</head>
+<body>
+    <header>
+        <h1>Chiroyli Restoran</h1>
+        <p>Eng mazali taomlarni biz bilan kashf eting!</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="{% url 'home' %}">Barchasi</a></li>
+
+            {% if request.user.is_anonymous %}
+                <li><a href="{% url 'regis' %}">Ro'yxatdan O'tish</a></li>
+                <li><a href="{% url 'login' %}">Login</a></li>
+            {% else%}
+                <li><a href="{% url 'add-category' %}">Kategoriya qo'shish</a></li>
+                <li><a href="{% url 'add-food' %}">Ovqat Qo'shish</a></li>
+                <li><a onclick="logout()">Log out</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+
+    {% block content %}{% endblock %}
+
+    <footer>
+        <p>© 2025 Chiroyli Restoran. Barcha huquqlar himoyalangan.</p>
+    </footer>
+    <script>
+        function logout(){
+            let conf = confirm("Rostan ham chiqasizmi!")
+            if (conf == true){
+                   window.location.href = "{% url 'logout' %}";
+            }
+        }
+    </script>
+</body>
+</html>

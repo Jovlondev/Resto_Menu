@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="{% static 'auth/style.css'%}">
+    <title>Ro'yhatdan o'tish</title>
+</head>
+
+    <body>
+        <section>
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <h1>Login</h1>
+                <h3 style="background-color: rgba(255, 0, 0, 0.3); color:magenta;">{{ error }}</h3>
+                <div class="inputbox">
+                    <input type="tel" name="phone" required>
+                    <label for="">Telefon raqam:</label>
+                </div>
+                <div class="inputbox">
+                    <input type="tex" name="fio" required>
+                    <label for="">To'liq ism sharif:</label>
+                </div>
+                <div class="inputbox">
+                    <input type="number" name="yosh" required>
+                    <label for="">Yoshingizni kiriting:</label>
+                </div>
+                <div class="inputbox">
+                    <input type="password" name="password" required>
+                    <label for="">Parol kiriting: </label>
+                </div>
+                <div class="inputbox">
+                    <input type="password" name="pass_conf" required>
+                    <label for="">  Parolni qayta kiriting: </label>
+                </div>
+                <button type="submit">Log in</button>
+                <div class="register">
+                    <p>Hisobingiz bormi <a href="{% url 'login' %}">Saytga kirish</a></p>
+                </div>
+            </form>
+        </section>
+        <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    </body>
+
+</html>

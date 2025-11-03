@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+
+
+{% block title %} |Home {% endblock %}
+
+
+
+{% block content %}
+<div class="menu">
+        {% for i in ctgs %}
+        {% if i.ovqat.all %}
+        <div class="category" id="salatlar">
+            <h2>{{i.name}}</h2>
+            <p class="category-type">{{i.get_type}}</p>
+            {% for food in  i.ovqat.all%}
+            <div class="food-item">
+
+                <img  {% if food.first_image %}
+                        src="{{food.first_image.url}}"
+                        alt="Rasm topilmadi"
+                      {% else %}
+                        alt = 'Rasm Aniqlanmadi'
+                      {% endif %}
+                >
+                <div class="food-info">
+                    <h3>{{food.name}} <span style="color: red; ">{{food.skidka}} %off</span></h3>
+                    <p>{{food.desc}}</p>
+                </div>
+                {% if food.skidka%}
+                <del style="color: red;" class="price">{{food.price}}</del>
+                <span style="color: green;" class="price">{{food.org_price}} so'm </span>
+                {% else %}
+                <span style="color: green;" class="price">{{food.org_price}} so'm</span>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+        {% endfor %}
+    </div>
+{% endblock %}

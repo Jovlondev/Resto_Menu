@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+
+
+{% block title %} |Add Category {% endblock %}
+
+
+
+{% block content %}
+<div class="container">
+    {% if success %}
+        <h3 style="color: green;">{{success}}</h3>
+    {% endif %}
+    {% if error %}
+        <h3 style="color: red;">{{error}}</h3>
+    {% endif %}
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="category-name">Kategoriya Nomi</label>
+                <input type="text" id="category-name" name="name" placeholder="Masalan: Shirinliklar" required>
+            </div>
+            <div class="form-group">
+                <label for="category-type">Kategoriya Turi</label>
+                <select id="category-type" name="type" required>
+                    <option value="" disabled selected>Turi tanlang</option>
+                    {% for i,j in ctgs.type_choices%}
+                        <option value="{{ i }}">{{ j }}</option>
+                    {% endfor %}
+
+                </select>
+            </div>
+            <button type="submit">Kategoriya Qo'shish</button>
+        </form>
+    </div>
+{% endblock %}
